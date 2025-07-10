@@ -110,12 +110,13 @@ def api_add_producto():
     img = data.get('img', '').strip()
     desc = data.get('desc', '').strip()
     errores = []
-    if not (nombre and img and desc):
+    if not (nombre and img and desc is not None):
         errores.append('Faltan campos')
     if len(nombre) < 2 or len(nombre) > 40:
         errores.append('El nombre debe tener entre 2 y 40 caracteres.')
-    if len(desc) < 10 or len(desc) > 300:
-        errores.append('La descripción debe tener entre 10 y 300 caracteres.')
+    # Quitar la validación de longitud mínima para desc
+    if len(desc) > 300:
+        errores.append('La descripción debe tener como máximo 300 caracteres.')
     if errores:
         return jsonify({'error': ' | '.join(errores)}), 400
     mongo.db.productos.insert_one({'nombre': nombre, 'img': img, 'desc': desc})
