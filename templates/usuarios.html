@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - Canin Express</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header class="hero" style="min-height: 20vh;">
+        <div class="hero-content">
+            <h1>Gestión de Usuarios</h1>
+            <a href="/admin" class="btn-hero" style="margin-top:10px;">Volver al panel</a>
+        </div>
+    </header>
+    <main style="padding: 40px 0;">
+        <section class="admin-form">
+            <h2>Registrar nuevo usuario</h2>
+            <form method="post" action="/admin/usuarios/registrar" autocomplete="off">
+                <input type="text" name="usuario" placeholder="Usuario" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <select name="rol">
+                    <option value="editor">Editor</option>
+                    <option value="admin">Administrador</option>
+                </select>
+                <button type="submit">Registrar</button>
+            </form>
+        </section>
+        <section class="usuarios">
+            <h2>Usuarios actuales</h2>
+            <table style="margin:auto;min-width:320px;">
+                <thead>
+                    <tr><th>Usuario</th><th>Rol</th></tr>
+                </thead>
+                <tbody>
+                    {% for u in usuarios %}
+                    <tr><td>{{ u.usuario }}</td><td>{{ u.rol }}</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Canin Express. Gestión de usuarios.</p>
+    </footer>
+</body>
+</html> 

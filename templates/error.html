@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Canin Express</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .error-box { max-width: 400px; margin: 80px auto; background: #fff; border-radius: 18px; box-shadow: 0 2px 12px #b3c9c6; padding: 36px 28px 28px 28px; text-align: center; }
+        .error-box h1 { font-size: 2.2rem; color: #e7743e; margin-bottom: 18px; }
+        .error-box p { color: #0c2126; font-size: 1.1rem; }
+        .error-box a { display: inline-block; margin-top: 18px; color: #fff; background: #5baa82; padding: 10px 24px; border-radius: 10px; text-decoration: none; font-weight: bold; }
+        .error-box a:hover { background: #e7743e; }
+    </style>
+</head>
+<body>
+    <div class="error-box">
+        <h1>¡Ups!</h1>
+        <p>{{ mensaje }}</p>
+        <a href="/">Volver al inicio</a>
+    </div>
+</body>
+</html> 

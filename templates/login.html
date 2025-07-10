@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - Canin Express</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body { background: #e3e4eb; }
+        .login-box {
+            max-width: 350px;
+            margin: 80px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 12px #b3c9c6;
+            padding: 36px 28px 28px 28px;
+            text-align: center;
+        }
+        .login-box h1 {
+            font-size: 2rem;
+            color: #0c2126;
+            margin-bottom: 18px;
+        }
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            border: 1.5px solid #b3c9c6;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #f7f7f7;
+            box-sizing: border-box;
+            transition: border 0.2s;
+        }
+        .login-box input:focus {
+            border: 2px solid #5baa82;
+            outline: none;
+        }
+        .login-box button {
+            background: linear-gradient(90deg, #5baa82 0%, #8ecca7 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px #b3c9c6;
+        }
+        .login-box button:hover {
+            background: linear-gradient(90deg, #e7743e 0%, #e09f7f 100%);
+            transform: scale(1.04);
+        }
+        .login-box .error {
+            color: #e7743e;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h1>Admin Canin Express</h1>
+        {% if error %}<div class="error">{{ error }}</div>{% endif %}
+        <form method="post">
+            <input type="text" name="usuario" placeholder="Usuario" required autofocus>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+</body>
+</html> 

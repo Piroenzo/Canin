@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Canin Express</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="/static/logo.png">
+</head>
+<body>
+    <header class="hero" style="min-height: 30vh;">
+        <div class="hero-content">
+            <h1>Panel de Administración</h1>
+            <p>Agregar y gestionar productos - Canin Express</p>
+            <a href="/" class="btn-hero" style="margin-top:10px;">Volver al inicio</a>
+        </div>
+        <div class="hero-bg-anim"></div>
+    </header>
+    <main style="padding: 40px 0;">
+        <section class="admin-form">
+            <h2>Agregar producto</h2>
+            <form id="form-producto" autocomplete="off" enctype="multipart/form-data">
+                <input type="text" name="nombre" placeholder="Título del producto" required>
+                <input type="file" name="imgfile" id="imgfile" accept="image/*" required>
+                <img id="preview-img" src="" alt="Previsualización" style="display:none;max-width:120px;margin:10px auto;">
+                <textarea name="desc" placeholder="Descripción" required style="min-height:60px;"></textarea>
+                <button type="submit">Agregar</button>
+            </form>
+        </section>
+        <section class="productos">
+            <h2>Productos actuales</h2>
+            <div class="productos-lista" id="admin-productos-lista">
+                <!-- Aquí se mostrarán los productos agregados -->
+            </div>
+        </section>
+    </main>
+    <!-- Modal de edición -->
+    <div id="modal-editar" class="modal-editar" style="display:none;">
+        <div class="modal-contenido">
+            <h2>Editar producto</h2>
+            <form id="form-editar" autocomplete="off" enctype="multipart/form-data">
+                <input type="text" name="nombre" id="edit-nombre" placeholder="Título del producto" required>
+                <input type="file" name="imgfile" id="edit-imgfile" accept="image/*">
+                <img id="edit-preview-img" src="" alt="Previsualización" style="display:none;max-width:120px;margin:10px auto;">
+                <textarea name="desc" id="edit-desc" placeholder="Descripción" required style="min-height:60px;"></textarea>
+                <div style="margin-top:10px;display:flex;gap:10px;justify-content:center;">
+                    <button type="submit">Guardar</button>
+                    <button type="button" id="cancelar-edicion">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Canin Express. Panel de administración.</p>
+    </footer>
+    <script src="/static/admin.js"></script>
+</body>
+</html> 
