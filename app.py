@@ -11,6 +11,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import re
 import time
 import logging
+import cloudinary
+import cloudinary.uploader
 
 app = Flask(__name__)
 
@@ -30,6 +32,13 @@ if not app.config["MONGO_URI"]:
     raise RuntimeError("Falta la variable de entorno MONGO_URI")
 if not ADMIN_PASS_HASH:
     raise RuntimeError("Falta la variable de entorno ADMIN_PASS_HASH (hash de la contraseña de admin)")
+
+# Configuración de Cloudinary
+cloudinary.config(
+  cloud_name = os.getenv('CLOUDINARY_CLOUD_NAME'),
+  api_key = os.getenv('CLOUDINARY_API_KEY'),
+  api_secret = os.getenv('CLOUDINARY_API_SECRET')
+)
 
 # Decorador para requerir login
 def login_requerido(f):
@@ -145,15 +154,10 @@ def upload_img():
     file = request.files['file']
     if file.filename == '':
         return jsonify({'error': 'No selected file'}), 400
-    if file and file.filename and allowed_file(file.filename):
-        filename = secure_filename(file.filename)
-        # Renombrar con timestamp para evitar conflictos
-        ext = filename.rsplit('.', 1)[1].lower()
-        base = filename.rsplit('.', 1)[0]
-        unique_name = f"{base}_{int(time.time())}.{ext}"
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], unique_name)
-        file.save(filepath)
-        url = f'/static/uploads/{unique_name}'
+    if file and allowed_file(file.filename):
+        # Subir a Cloudinary
+        result = cloudinary.uploader.upload(file, folder="canin_express")
+        url = result.get('secure_url')
         return jsonify({'url': url})
     return jsonify({'error': 'Tipo de archivo no permitido'}), 400
 
